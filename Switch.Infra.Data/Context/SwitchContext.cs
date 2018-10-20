@@ -14,5 +14,20 @@ namespace Switch.Infra.Data.Context
         {
 
         }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Usuario>(entity => {
+                entity.HasKey(u => u.Id);
+                entity.Property(u => u.Nome)
+                    .HasColumnName("Nome")
+                    .IsRequired()
+                    .HasMaxLength(400);
+
+            });
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
